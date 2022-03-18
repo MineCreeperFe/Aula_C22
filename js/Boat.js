@@ -13,10 +13,10 @@ class Boat {
 
     remove(index) {
       this.animation = boatanimation;
-      /*this.speed = 0.0784;
+      this.speed = 0.0784;
       this.width = 300;
       this.height = 300;
-      this.isBroken = true;*/
+      this.isBroken = true;
         setTimeout(() => {
           Matter.World.remove(world, boatmatriz[index].body);
           delete boatmatriz[index];
@@ -33,6 +33,7 @@ class Boat {
         rotate(angle);
         imageMode(CENTER);
         image(this.animation[index],0,this.position,this.w,this.h);
+        noTint();
         pop();
     }
 

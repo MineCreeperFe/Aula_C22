@@ -5,16 +5,25 @@ const Constraint = Matter.Constraint;
 var engine, world, backgroundImg;
 var canvas, angle, tower, ground, cannon, ball;
 var boatAnimationsMainDatabase, boatAnimationImageDatabase;
+var brokenboatAnimationsMainDatabase, brokenboatAnimationImageDatabase;
+var watersplashAnimationsMainDatabase, watersplashAnimationImageDatabase;
+var score = 0
 
 var ballmatriz = [];
 var boatmatriz = [];
 var boatanimation = []; 
+var brokenboatanimation = [];
+var waterSplashAnimation = []
 
 function preload() {
   backgroundImg = loadImage("./assets/background.gif");
   towerImage = loadImage("./assets/tower.png");
   boatAnimationsMainDatabase = loadJSON("./assets/boat/boat.json");
   boatAnimationImageDatabase = loadImage("./assets/boat/boat.png");
+  brokenboatAnimationsMainDatabase = loadJSON("./assets/boat/brokenBoat.json");
+  brokenboatAnimationImageDatabase = loadImage("./assets/boat/brokenBoat.png");
+  watersplashAnimationsMainDatabase = loadJSON("./assets/waterSplash/waterSplash.json");
+  watersplashAnimationImageDatabase = loadImage("./assets/waterSplash/waterSplash.png");
 }
 
 function setup() {
@@ -41,8 +50,22 @@ function setup() {
   var boatAnimationFrames = boatAnimationsMainDatabase.frames;
   for (var i = 0; i < boatAnimationFrames.length; i = i+1) {
     var pos = boatAnimationFrames[i].position;
-    var img = boatAnimationFrames.get(pos.x, pos.y, pos.w, pos.h);
+    var img = boatAnimationImageDatabase.get(pos.x, pos.y, pos.w, pos.h);
     boatanimation.push(img);
+  }
+  
+  var waterSplashAnimationFrames = watersplashAnimationsMainDatabase.frames;
+  for (var i = 0; i < waterSplashAnimationFrames.length; i = i+1) {
+    var pos = waterSplashAnimationFrames[i].position;
+    var img = watersplashAnimationImageDatabase.get(pos.x, pos.y, pos.w, pos.h);
+    waterSplashAnimation.push(img);
+  }
+
+  var brokenboatAnimationFrames = brokenboatAnimationsMainDatabase.frames;
+  for (var i = 0; i < brokenboatAnimationFrames.length; i = i+1) {
+    var pos = brokenboatAnimationFrames[i].position;
+    var img = brokenboatAnimationImageDatabase.get(pos.x, pos.y, pos.w, pos.h);
+    brokenboatanimation.push(img);
   }
 }
 
